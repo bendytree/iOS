@@ -11,7 +11,7 @@
 #import <objc/message.h>
 
 
-@implementation NSObject (Swizzle)
+@implementation NSObject (BT)
 
 + (BOOL)swizzleMethod:(SEL)origSelector withMethod:(SEL)newSelector
 {

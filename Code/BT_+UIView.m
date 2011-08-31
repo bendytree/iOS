@@ -9,7 +9,7 @@
 #import "UIView+Position.h"
 
 
-@implementation UIView (Position)
+@implementation UIView (BT)
 
 - (void) setX:(int)x
 {

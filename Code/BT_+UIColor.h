@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (Color)
+@interface NSString (BT)
 
 - (UIColor*) hexStringToColor;
 
 @end
 
-@interface UIColor (Color)
+@interface UIColor (BT)
 
 - (NSString*) colorToHexString;
 

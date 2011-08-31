@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface UIView (Position)
+@interface UIView (BT)
 
 - (void) setX:(int)x;
 - (void) setY:(int)y;

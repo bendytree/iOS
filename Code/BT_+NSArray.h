@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSArray (Awesome)
+@interface NSArray (BT)
 
 - (bool) containsString:(NSString*)str;
 

@@ -2,19 +2,15 @@
 
 /**
  *
- *  This is an example header file. It allows you to select which modules to add
- *  to your XCode build. Here's how to use this file:
+ *  This file allows you to select which modules are included in 
+ *  your XCode build. This allows you to ignore modules that you
+ *  don't want to use which have annoying dependencies.
  *
- *  Step 1) Copy this file into your project "BendyTree.h"
+ *  Include a module by changing 0 to 1.
  *
- *  Step 2) Remove the 2 lines that comment this out (first & last of whole page)
- *
- *  Step 3) Add `#import "BendyTree.h"` to your ProjectName-Prefix.pch
- *
- *  Step 4) For each module you want, change 0 to 1
- *
- *  Step 5) Be sure to add any dependencies listed next to the module
+ *  Add any dependencies described next to the module.
  *  
+ *  Be sure to remove the top & bottom lines, otherwize this file is ignored
  */
 
 

@@ -9,7 +9,7 @@
 #import "NSString+Awesome.h"
 
 
-@implementation NSString (Awesome)
+@implementation NSString (BT)
 
 - (bool) contains:(NSString*)subtext
 {
@@ -26,11 +26,6 @@
     bool result = [self caseInsensitiveCompare:text] == NSOrderedSame;
     return result; //For some reason assignment has to happen, then return or else WebCommand matches everywhere    
 }
-
-@end
-
-
-@implementation NSString (Formatting)
 
 - (NSString*) format:(id)obj
 {

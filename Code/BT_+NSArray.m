@@ -9,7 +9,7 @@
 #import "NSArray+Awesome.h"
 
 
-@implementation NSArray (Awesome)
+@implementation NSArray (BT)
 
 - (bool) containsString:(NSString*)str
 {

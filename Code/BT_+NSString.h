@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSString (Awesome)
+@interface NSString (BT)
 
 - (bool) contains:(NSString*)subtext;
 - (bool) containsIgnoreCase:(NSString*)subtext;

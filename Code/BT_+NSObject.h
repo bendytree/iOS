@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSObject (Swizzle)
+@interface NSObject (BT)
 
 + (BOOL)swizzleMethod:(SEL)origSelector withMethod:(SEL)newSelector;
 

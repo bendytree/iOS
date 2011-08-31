@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface UIWebView (Awesome)
+@interface UIWebView (BT)
 
 - (void) setScrolls:(bool)doScroll;
 

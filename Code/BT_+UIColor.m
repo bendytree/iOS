@@ -9,7 +9,7 @@
 #import "ColorService.h"
 #import "UIColor-Expanded.h"
 
-@implementation NSString (Color)
+@implementation NSString (BT)
 
 - (UIColor*) hexStringToColor
 {
@@ -19,7 +19,7 @@
 @end
 
 
-@implementation UIColor (Color)
+@implementation UIColor (BT)
 
 - (NSString*) colorToHexString
 {

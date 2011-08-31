@@ -9,7 +9,7 @@
 #import "UIWebView+Awesome.h"
 
 
-@implementation UIWebView (Awesome)
+@implementation UIWebView (BT)
 
 - (void) setScrolls:(bool)doScroll
 {

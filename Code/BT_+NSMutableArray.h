@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSMutableArray (Awesome)
+@interface NSMutableArray (BT)
 
 - (void)moveObjectFromIndex:(NSUInteger)from toIndex:(NSUInteger)to;
 

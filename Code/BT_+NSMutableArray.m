@@ -8,7 +8,7 @@
 
 #import "NSMutableArray+Awesome.h"
 
-@implementation NSMutableArray (Awesome)
+@implementation NSMutableArray (BT)
 
 - (void)moveObjectFromIndex:(NSUInteger)from toIndex:(NSUInteger)to
 {
