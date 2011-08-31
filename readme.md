@@ -2,6 +2,7 @@
 Bendy Tree iOS Library
 ======================
 
+
 ### Overview
 
 This iOS library contains many small bits of code that simplify common iOS tasks.
@@ -17,6 +18,8 @@ For example, the iOS SDK has no simple method of showing an alert with a text in
 }
 ```
 
+
+
 ### Available Features
 
 Right now the code documents itself.  Here are a few key features so you'll have an idea of what's inside:
@@ -28,8 +31,6 @@ Right now the code documents itself.  Here are a few key features so you'll have
     > BOOL contains = [@"OU, TU, OSU, MZU" contains:@"OU"];
     
     > [users moveObjectFromIndex:5 toIndex:3];
-    
-    > UIColor* color = [@"990011" hexStringToColor];
     
     > UIColor* color = [@"990011" hexStringToColor];
 
@@ -57,11 +58,15 @@ Right now the code documents itself.  Here are a few key features so you'll have
     > [[SettingsRepository current] setString:@"BendyTree" forKey:@"username"];    
 
 
+
+
 ### Annoying Dependencies
 
 Some parts of this library have outside dependencies. For example, the string formatting requires a 3rd party Regular Expression library.  If you're not using string formatting, then it would be annoying to satisfy that dependency.  But no worries - you don't have to.
 
 The `BT.h` file controls what pieces of this library compiled.  So if you wanted to use string formatting, then you'd set BT_STRING_FORMATTING to 1.  See the comments at the top of `BT.h` for details.
+
+
 
 
 ### Getting Started
