@@ -1,8 +1,7 @@
 #if BT_CD
 
 //
-//  CDManager.m
-//  TestCoreData4
+//  Bendy Tree iOS Library
 //
 //  Created by JOSHUA WRIGHT on 5/24/11.
 //  Copyright 2011 BendyTree. All rights reserved.
@@ -171,8 +170,6 @@ static CD* _current = NULL;
     return _current;
 }
 
-
-
 - (void)dealloc
 {
     self.context = nil;
@@ -181,7 +178,6 @@ static CD* _current = NULL;
     
     [super dealloc];
 }
-
 
 @end
 

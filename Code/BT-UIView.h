@@ -1,11 +1,10 @@
-#if BT_BASIC_EXTENSIONS
+#if BT_BASICS
 
 //
-//  UIView+Position.h
-//  BibleAppSource
+//  Bendy Tree iOS Library
 //
 //  Created by JOSHUA WRIGHT on 5/8/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 Bendy Tree iOS Library. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

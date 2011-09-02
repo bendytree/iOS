@@ -1,11 +1,10 @@
-#if BT_BASIC_EXTENSIONS
+#if BT_BASICS
 
 //
-//  AlertService.h
-//  GoogleVoiceTwo
+//  Bendy Tree iOS Library
 //
 //  Created by JOSHUA WRIGHT on 8/15/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009 Bendy Tree iOS Library. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

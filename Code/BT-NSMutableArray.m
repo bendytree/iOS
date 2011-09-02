@@ -1,11 +1,10 @@
-#if BT_BASIC_EXTENSIONS
+#if BT_BASICS
 
 //
-//  NSMutableArray.m
-//  YourAppHereAppSource
+//  Bendy Tree iOS Library
 //
 //  Created by JOSHUA WRIGHT on 10/24/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 Bendy Tree iOS Library. All rights reserved.
 //
 
 #import "BT-NSMutableArray.h"

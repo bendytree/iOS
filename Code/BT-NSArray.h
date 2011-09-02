@@ -1,11 +1,10 @@
-#if BT_BASIC_EXTENSIONS
+#if BT_BASICS
 
 //
-//  NSArray+Awesome.h
-//  BendyTreeiPhoneLibTesting
+//  Bendy Tree iOS Library
 //
 //  Created by JOSHUA WRIGHT on 11/22/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 Bendy Tree. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

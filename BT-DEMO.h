@@ -1,5 +1,6 @@
 //#if XYXYYYXYXYXYXXY   //<-- REMOVE THIS LINE ---------------------------------<<
 
+
 /**
  *
  *  This file allows you to select which modules are included in 
@@ -11,29 +12,75 @@
  *  Add any dependencies described next to the module.
  *  
  *  Be sure to remove the top & bottom lines, otherwize this file is ignored
+ *
+ *
+ *  POSSIBLE DEPENDENCIES:
+ *
+ *      SBJSON:         https://github.com/stig/json-framework/
+ *
+ *      RegexKitLite:   http://regexkit.sourceforge.net
+ *
+ *      ASIHttpRequest: http://allseeing-i.com/ASIHTTPRequest/Setup-instructions
+ *
  */
 
 
+
 /**
- *  USER INTERFACE
+ *  BASIC EXTENSIONS
  *
+ *  Categories on populate types like NSString, UIView, NSArray, etc.
  *  Lots of random UI elements like prompts (alerts with textboxes), fullscreen
  *  loading spinners, and more.
  *
- *  Dependencies
- *      JSON:  
+ *  Dependencies: None
  */
 
-#define BT_UI 1
+#define BT_BASICS 1
+
+#import "BT-NSArray.h"
+#import "BT-NSMutableArray.h"
+#import "BT-NSObject.h"
+#import "BT-NSString.h"
+#import "BT-UIView.h"
+#import "BT-UIWebView.h"
+#import "BT-Device.h"
+#import "BT-UUID.h"
+#import "BT-Links.h"
+#import "BT-ExpandoController.h"
+#import "BT-Alert.h"
+#import "BT-Prompt.h"
+#import "BT-AppSettings.h"
 
 
 /**
- *  NOT A MODULE
+ *  JSON
  *
- *  These are import statements for each module.  Do not change these.
+ *  Serialize and deserialize custom objects to/from JSON.
+ *
+ *  Dependencies: SBJSON
  */
 
-#import "BT_UI.h"
+#define BT_JSON 0
 
- 
+#import "BT-JSON.h"
+
+
+
+/**
+ *  CORE DATA
+ *
+ *  Extremely easy access to core data.
+ *
+ *  Dependencies: The Core Data Framework
+ */
+
+#define BT_CD 0
+
+#import "BT-CD.h"
+
+
+
+
+
 //#endif   //<-- REMOVE THIS LINE ------------------------------------------------<<

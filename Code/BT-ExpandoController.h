@@ -1,11 +1,10 @@
-#if BT_BASIC_EXTENSIONS
+#if BT_BASICS
 
 //
-//  ExpandableController.h
-//  YourAppHereAppSource
+//  Bendy Tree iOS Library
 //
 //  Created by JOSHUA WRIGHT on 10/23/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 Bendy Tree iOS Library. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

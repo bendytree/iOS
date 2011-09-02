@@ -1,4 +1,4 @@
-#if BT_BASIC_EXTENSIONS
+#if BT_BASICS
 
 #import "BT-AppSettings.h"
 
