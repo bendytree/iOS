@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  NSArray+Awesome.h
 //  BendyTreeiPhoneLibTesting
@@ -11,6 +13,11 @@
 
 @interface NSArray (BT)
 
-- (bool) containsString:(NSString*)str;
+- (bool) contains:(id)example;
+- (id) first;
+- (id) last;
+- (NSString*) join:(NSString*)separator;
 
 @end
+
+#endif

@@ -6,14 +6,28 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "DeviceService.h"
+#import "BT-Device.h"
 
 
-@implementation DeviceService
+@implementation Device
 
 + (BOOL) isIPad
 {
     return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+}
+
++ (bool) isSimulator
+{
+#if TARGET_IPHONE_SIMULATOR
+    return true;
+#else
+    return false;
+#endif   
+}
+
++ (NSString*) udid
+{
+    return [UIDevice currentDevice].uniqueIdentifier;   
 }
 
 @end

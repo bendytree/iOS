@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  GuidService.m
 //  YourAppHereAppSource
@@ -6,10 +8,9 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "GuidService.h"
+#import "BT-UUID.h"
 
-
-@implementation GuidService
+@implementation UUID
 
 + (NSString *) generate
 {
@@ -19,5 +20,6 @@
     return [(NSString *)string autorelease];
 }
 
-
 @end
+
+#endif

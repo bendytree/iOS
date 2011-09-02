@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  UIWebView+Awesome.m
 //  YourAppHereAppSource
@@ -6,17 +8,16 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "UIWebView+Awesome.h"
+#import "BT-UIWebView.h"
 
 
 @implementation UIWebView (BT)
 
 - (void) setScrolls:(bool)doScroll
 {
-    UIScrollView* sv = nil;
     for(UIView* v in self.subviews){
         if([v isKindOfClass:[UIScrollView class]]){
-            sv = (UIScrollView*) v;
+            UIScrollView* sv = (UIScrollView*) v;
             sv.scrollEnabled = doScroll;
             sv.bounces = doScroll;
         }
@@ -24,3 +25,5 @@
 }
 
 @end
+
+#endif

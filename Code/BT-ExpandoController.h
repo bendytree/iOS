@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  ExpandableController.h
 //  YourAppHereAppSource
@@ -9,7 +11,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ExpandableController : UIViewController {
+@interface ExpandoController : UIViewController {
     
 }
 
@@ -20,8 +22,7 @@
 - (id) initWithControllers:(NSArray*)_controllers height:(int)_height;
 
 - (void) performSelectorOnControllers:(SEL)selector;
-- (void) updateHeight:(int)_height;
-
-+ (void) repositionParentOf:(UIViewController*)controller;
 
 @end
+
+#endif BT_UI

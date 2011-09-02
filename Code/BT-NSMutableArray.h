@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  NSMutableArray.h
 //  YourAppHereAppSource
@@ -13,3 +15,5 @@
 - (void)moveObjectFromIndex:(NSUInteger)from toIndex:(NSUInteger)to;
 
 @end
+
+#endif

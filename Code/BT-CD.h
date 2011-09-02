@@ -1,3 +1,5 @@
+#if BT_CD
+
 //
 //  CDManager.h
 //  TestCoreData4
@@ -25,3 +27,5 @@
 + (void) delete:(NSManagedObject*)obj;
 
 @end
+
+#endif

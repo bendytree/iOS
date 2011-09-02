@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  NSObject+Swizzle.h
 //  AllStarApps
@@ -14,3 +16,5 @@
 + (BOOL)swizzleMethod:(SEL)origSelector withMethod:(SEL)newSelector;
 
 @end
+
+#endif

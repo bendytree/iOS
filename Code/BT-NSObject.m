@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  NSObject+Swizzle.m
 //  AllStarApps
@@ -6,7 +8,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "NSObject+Swizzle.h"
+#import "BT-NSObject.h"
 #import <objc/runtime.h> 
 #import <objc/message.h>
 
@@ -30,3 +32,5 @@
 }
 
 @end
+
+#endif

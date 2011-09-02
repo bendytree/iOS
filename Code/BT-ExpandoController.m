@@ -1,4 +1,5 @@
-    //
+#if BT_BASIC_EXTENSIONS
+
 //  ExpandableController.m
 //  YourAppHereAppSource
 //
@@ -6,18 +7,11 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "ExpandableController.h"
-#import "UIView+Position.h"
-
-@interface ExpandableController()
-
-+ (void) addExpandable:(ExpandableController*)expandable;
-+ (void) removeExpandable:(ExpandableController*)expandable;
-
-@end
+#import "BT-ExpandoController.h"
+#import "BT-UIView.h"
 
 
-@implementation ExpandableController
+@implementation ExpandoController
 
 @synthesize initialHeight, controllers, scroller;
 
@@ -27,10 +21,6 @@
     if (self != nil) {
         self.controllers = _controllers;
         self.initialHeight = _initialHeight;
-        
-        [ExpandableController addExpandable:self];
-        
-        [self addObserver:self forKeyPath:@"view.frame" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) context:nil];
     }
     return self;
 }
@@ -47,19 +37,7 @@
     [self.scroller setContentSize:CGSizeMake(320, height)];
 }
 
-- (void) updateHeight:(int)_height
-{
-    [self.scroller setHeight:_height];
-    [self.view setHeight:_height];
-}
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if([keyPath isEqual:@"view.frame"]){
-        [self.scroller setHeight:self.view.frame.size.height];
-        [self reposition];
-    }
-}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -116,53 +94,15 @@
 }
 
 - (void)dealloc {
-    [self removeObserver:self forKeyPath:@"view.frame"];
     
     self.controllers = nil;
     self.scroller = nil;
     self.initialHeight = 0;
     
-    [ExpandableController removeExpandable:self];
-    
     [super dealloc];
 }
 
 
-
-
-// Singleton
-static NSMutableArray* _allExpandables = NULL;
-+ (NSMutableArray*) allExpandables
-{
-    @synchronized(self)
-    {
-        if(_allExpandables == NULL)
-            _allExpandables = [[NSMutableArray alloc] init];
-    }
-    return _allExpandables;
-}
-
-+ (void) addExpandable:(ExpandableController*)expandable
-{
-    [[ExpandableController allExpandables] addObject:expandable];
-}
-
-+ (void) removeExpandable:(ExpandableController*)expandable
-{
-    [[ExpandableController allExpandables] removeObject:expandable];
-}
-
-+ (void) repositionParentOf:(UIViewController*)controller
-{
-    //[UIView beginAnimations:@"reposition" context:nil];
-    //[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    for(ExpandableController* expandable in [self allExpandables])
-    {        
-        if([expandable.controllers containsObject:controller]){
-            [expandable reposition];
-        }
-    }
-    //[UIView commitAnimations];
-}
-
 @end
+
+#endif

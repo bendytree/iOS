@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  AlertService.h
 //  GoogleVoiceTwo
@@ -9,11 +11,11 @@
 #import <Foundation/Foundation.h>
 
 
-@interface AlertService : NSObject {
+@interface Alert : NSObject
 
-}
-
-+ (void) show:(NSString*)title withMessage:(NSString*)message;
++ (void) show:(NSString*)title message:(NSString*)msg;
 + (void) show:(NSString*)message;
 
 @end
+
+#endif

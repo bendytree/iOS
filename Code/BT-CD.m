@@ -1,3 +1,5 @@
+#if BT_CD
+
 //
 //  CDManager.m
 //  TestCoreData4
@@ -6,7 +8,7 @@
 //  Copyright 2011 BendyTree. All rights reserved.
 //
 
-#import "CD.h"
+#import "BT-CD.h"
 
 @interface CD()
 + (CD*) current;
@@ -182,3 +184,5 @@ static CD* _current = NULL;
 
 
 @end
+
+#endif

@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  MapService.h
 //  YourAppHereAppSource
@@ -9,11 +11,11 @@
 #import <Foundation/Foundation.h>
 
 
-@interface MapService : NSObject {
+@interface Links : NSObject
 
-}
-
-+ (void) showAddress:(NSString*)address;
++ (void) launchMapOfAddress:(NSString*)address;
 + (void) launchDirectionsFrom:(NSString*)from to:(NSString*)to;
 
 @end
+
+#endif

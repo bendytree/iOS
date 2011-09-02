@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  NSString+Awesome.h
 //  YourAppHereAppSource
@@ -14,22 +16,9 @@
 - (bool) contains:(NSString*)subtext;
 - (bool) containsIgnoreCase:(NSString*)subtext;
 - (bool) isEqualIgnoreCase:(NSString*)text;
-
-@end
-
-
-
-@interface NSString (Formatting)
-
+- (NSArray*) split:(NSString*)splitter;
 - (NSString*) format:(id)obj;
 
 @end
 
-
-@interface StringFormattingService : NSObject {
-
-}
-
-+ (NSString*) formatString:(NSString*)str withObject:(id)obj;
-
-@end
+#endif

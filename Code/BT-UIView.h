@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  UIView+Position.h
 //  BibleAppSource
@@ -25,5 +27,8 @@
 - (void) moveX:(int)amount;
 - (void) moveX:(int)xAmount andY:(int)yAmount;
 - (void) moveToBottom;
+- (void) replaceWith:(UIView*)newView;
 
 @end
+
+#endif

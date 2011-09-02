@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  UIWebView+Awesome.h
 //  YourAppHereAppSource
@@ -14,3 +16,5 @@
 - (void) setScrolls:(bool)doScroll;
 
 @end
+
+#endif

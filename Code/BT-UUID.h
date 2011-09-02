@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  GuidService.h
 //  YourAppHereAppSource
@@ -8,11 +10,10 @@
 
 #import <Foundation/Foundation.h>
 
-
-@interface GuidService : NSObject {
-
-}
+@interface UUID : NSObject
 
 + (NSString *) generate;
 
 @end
+
+#endif

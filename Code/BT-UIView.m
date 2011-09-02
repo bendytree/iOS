@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  UIView+Position.m
 //  BibleAppSource
@@ -6,7 +8,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "UIView+Position.h"
+#import "BT-UIView.h"
 
 
 @implementation UIView (BT)
@@ -81,5 +83,16 @@
     [self setFrame: CGRectMake(self.frame.origin.x, self.superview.frame.size.height-self.frame.size.height, self.frame.size.width, self.frame.size.height)];
 }
 
+- (void) replaceWith:(UIView*)newView
+{
+    [newView setFrame:self.frame];
+    [newView setBounds:self.bounds];
+    [newView setAutoresizingMask:self.autoresizingMask];
+    [self.superview addSubview:newView];
+    [self removeFromSuperview];
+}
+
 @end
 
+
+#endif

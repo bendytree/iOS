@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 
-@interface DeviceService : NSObject {
-
-}
+@interface Device : NSObject 
 
 + (BOOL) isIPad;
++ (bool) isSimulator;
++ (NSString*) udid;
 
 @end

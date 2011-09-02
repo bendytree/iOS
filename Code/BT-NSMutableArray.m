@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  NSMutableArray.m
 //  YourAppHereAppSource
@@ -6,7 +8,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "NSMutableArray+Awesome.h"
+#import "BT-NSMutableArray.h"
 
 @implementation NSMutableArray (BT)
 
@@ -26,3 +28,5 @@
 }
 
 @end
+
+#endif

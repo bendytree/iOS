@@ -1,3 +1,5 @@
+#if BT_BASIC_EXTENSIONS
+
 //
 //  MapService.m
 //  YourAppHereAppSource
@@ -6,10 +8,10 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "MapService.h"
+#import "BT-Links.h"
 
 
-@implementation MapService
+@implementation Links
 
 + (void) launchDirectionsFrom:(NSString*)from to:(NSString*)to
 {
@@ -19,7 +21,7 @@
     [app openURL:url];  
 }
 
-+ (void) showAddress:(NSString*)address
++ (void) launchMapOfAddress:(NSString*)address
 {
     UIApplication *app = [UIApplication sharedApplication];  
     NSString* urlString = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", address];
@@ -28,3 +30,5 @@
 }
 
 @end
+
+#endif
