@@ -37,8 +37,11 @@ Right now the code documents itself.  Here are a few key features so you'll have
  *  Core data wrapper for creating, updating, finding, counting, deleting, etc. This is my favorite module of the whole library:
  
     > NSArray* products = [CD find:[Product class]];
+
     > for(Product* product in products)
+
     >   product.Description = @"";
+
     > [CD save];
     
  *  Easy alerts, prompts, and loading screens:
