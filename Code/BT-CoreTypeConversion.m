@@ -118,9 +118,8 @@
             [obj setValue:propertyVal forKey:propertyName];
             
         // Convert custom object
-        }else if([propertyType descendsFrom:[NSDictionary class]]){
+        }else if([valType descendsFrom:[NSDictionary class]]){
             [obj setValue:[propertyVal toCustomType:propertyType] forKey:propertyName];
-            
         }
     }
     
