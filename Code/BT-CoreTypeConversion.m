@@ -115,7 +115,7 @@
             
         // Same type, so just assign
         }else if([valType descendsFrom:propertyType]){
-            [self setValue:propertyVal forKey:propertyName];
+            [obj setValue:propertyVal forKey:propertyName];
             
         // Convert custom object
         }else if([propertyType descendsFrom:[NSDictionary class]]){
