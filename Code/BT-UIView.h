@@ -12,6 +12,8 @@
 
 @interface UIView (BT)
 
+- (void) show;
+- (void) hide;
 - (void) setX:(int)x;
 - (void) setY:(int)y;
 - (void) setY:(int)y andHeight:(int)height;

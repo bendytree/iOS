@@ -12,6 +12,16 @@
 
 @implementation UIView (BT)
 
+- (void) show
+{
+    [self setHidden:NO];
+}
+
+- (void) hide
+{
+    [self setHidden:YES];
+}
+
 - (void) setX:(int)x
 {
     [self setFrame: CGRectMake(x, self.frame.origin.y, self.frame.size.width, self.frame.size.height)];
