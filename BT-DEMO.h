@@ -42,6 +42,9 @@
 #import "BT-NSMutableArray.h"
 #import "BT-NSObject.h"
 #import "BT-NSString.h"
+#import "BT-NSDate.h"
+#import "BT-Reflection.h"
+#import "BT-CoreTypeConversion.h"
 #import "BT-UIView.h"
 #import "BT-UIWebView.h"
 #import "BT-Device.h"
@@ -61,7 +64,7 @@
  *  Dependencies: SBJSON
  */
 
-#define BT_JSON 0
+#define BT_JSON 1
 
 #import "BT-JSON.h"
 
@@ -75,9 +78,14 @@
  *  Dependencies: The Core Data Framework
  */
 
-#define BT_CD 0
+#define BT_CD 1
 
 #import "BT-CD.h"
+
+
+
+
+
 
 
 
