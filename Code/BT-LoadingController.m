@@ -7,12 +7,13 @@
 //
 
 #import "BT-LoadingController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation BT_LoadingController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:@"BT-LoadingController" bundle:nil];
     if (self) {
         // Custom initialization
     }
@@ -32,7 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [blackSquare.layer setCornerRadius:5];
 }
 
 - (void)viewDidUnload

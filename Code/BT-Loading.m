@@ -31,6 +31,7 @@ static UIView* _loadingView = NULL;
     UIView* v = [self loadingView];
     UIWindow* window = [[UIApplication sharedApplication] keyWindow];
     [window addSubview:v];
+    [v setFrame:window.frame];
 }
 
 + (void) hide

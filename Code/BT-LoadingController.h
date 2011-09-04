@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BT_LoadingController : UIViewController
+@interface BT_LoadingController : UIViewController{
+    
+    IBOutlet UIView* blackSquare;
+    
+}
 
 @end
