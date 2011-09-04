@@ -28,10 +28,14 @@ static UIView* _loadingView = NULL;
 
 + (void) show
 {
+    [self showOn:[[UIApplication sharedApplication] keyWindow]];
+}
+
++ (void) showOn:(UIView*)parentView
+{
     UIView* v = [self loadingView];
-    UIWindow* window = [[UIApplication sharedApplication] keyWindow];
-    [window addSubview:v];
-    [v setFrame:window.frame];
+    [parentView addSubview:v];
+    [v setFrame:parentView.frame];
 }
 
 + (void) hide

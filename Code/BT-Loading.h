@@ -12,6 +12,7 @@
 
 @interface Loading : NSObject
 + (void) show;
++ (void) showOn:(UIView*)view;
 + (void) hide;
 @end
 
