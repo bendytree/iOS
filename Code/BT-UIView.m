@@ -101,6 +101,11 @@
     [self removeFromSuperview];
 }
 
+- (void) setSameSizeAsParent
+{
+    [self setFrame:CGRectMake(0, 0, self.superview.frame.size.width, self.superview.frame.size.height)];
+}
+
 @end
 
 

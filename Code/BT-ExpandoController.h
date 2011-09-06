@@ -16,9 +16,8 @@
 
 @property (retain) NSArray* controllers;
 @property (retain) UIScrollView* scroller;
-@property (assign) int initialHeight;
 
-- (id) initWithControllers:(NSArray*)_controllers height:(int)_height;
+- (id) initWithControllers:(NSArray*)_controllers;
 
 - (void) performSelectorOnControllers:(SEL)selector;
 

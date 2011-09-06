@@ -3,7 +3,6 @@
 
 
 
-
 /**
  *
  *  This file allows you to select which modules are included in 
@@ -59,6 +58,8 @@
 #import "BT-AppSettings.h"
 #import "BT-Loading.h"
 #import "BT-Callback.h"
+#import "BT-Image.h"
+#import "BT-UILabel.h"
 
 
 /**
@@ -86,6 +87,8 @@
 #define BT_CD 1
 
 #import "BT-CD.h"
+
+
 
 
 

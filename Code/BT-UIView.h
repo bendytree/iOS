@@ -29,6 +29,7 @@
 - (void) moveX:(int)xAmount andY:(int)yAmount;
 - (void) moveToBottom;
 - (void) replaceWith:(UIView*)newView;
+- (void) setSameSizeAsParent;
 
 @end
 

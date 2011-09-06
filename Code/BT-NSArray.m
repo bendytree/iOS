@@ -44,4 +44,13 @@
 
 @end
 
+@implementation NSObject (BT_NSArray)
+
+- (NSArray*) toArray
+{
+    return [NSArray arrayWithObject:self];
+}
+
+@end
+
 #endif

@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
     
-    [blackSquare.layer setCornerRadius:5];
+    [blackSquare.layer setCornerRadius:10];
 }
 
 - (void)viewDidUnload

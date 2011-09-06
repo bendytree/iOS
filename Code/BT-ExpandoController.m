@@ -13,14 +13,13 @@
 
 @implementation ExpandoController
 
-@synthesize initialHeight, controllers, scroller;
+@synthesize controllers, scroller;
 
-- (id) initWithControllers:(NSArray*)_controllers height:(int)_initialHeight
+- (id) initWithControllers:(NSArray*)_controllers
 {
     self = [super init];
     if (self != nil) {
         self.controllers = _controllers;
-        self.initialHeight = _initialHeight;
     }
     return self;
 }
@@ -34,26 +33,23 @@
         int viewHeight = c.view.frame.size.height;   
         height += viewHeight;
     }
-    [self.scroller setContentSize:CGSizeMake(320, height)];
+    [self.scroller setContentSize:CGSizeMake(self.scroller.frame.size.width, height)];
 }
 
 
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.scroller = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, self.initialHeight)] autorelease];
+    self.scroller = [[[UIScrollView alloc] initWithFrame:self.view.frame] autorelease];
     [self.view addSubview:self.scroller];
-    [self.view setY:0 andHeight:self.initialHeight]; 
     
-    [self.view setAutoresizesSubviews:NO];
+    [self.view setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
+    [self.scroller setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
+    
     [self.scroller setAutoresizesSubviews:NO];
     
     for(UIViewController* c in self.controllers)
-    {
         [self.scroller addSubview:c.view];
-    }
     
     [self reposition];
 }
@@ -97,7 +93,6 @@
     
     self.controllers = nil;
     self.scroller = nil;
-    self.initialHeight = 0;
     
     [super dealloc];
 }
