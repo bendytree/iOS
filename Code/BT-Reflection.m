@@ -49,6 +49,9 @@
 - (void) setAllPropertiesToNil
 {
     for(NSString* propertyName in [self propertyNames]){
+        Class propertyType = [self getPropertyType:propertyName];
+        if([propertyType class] == [NSNumber class])
+            continue;
         [self setValue:nil forKey:propertyName];
     }
 }
