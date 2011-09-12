@@ -9,7 +9,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface Prompt : NSObject
 + (void) show:(NSString*)title delegate:(id)del selector:(SEL)sel;
 + (void) show:(NSString*)title delegate:(id)del selector:(SEL)sel context:(id)con;
@@ -24,6 +23,5 @@
 @property (assign) id promptDelegate;
 @property (assign) SEL promptSelector;
 @end
-
 
 #endif

@@ -55,6 +55,7 @@
 #import "BT-ExpandoController.h"
 #import "BT-Alert.h"
 #import "BT-Prompt.h"
+#import "BT-Confirm.h"
 #import "BT-AppSettings.h"
 #import "BT-Loading.h"
 #import "BT-Callback.h"
