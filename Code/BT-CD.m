@@ -34,8 +34,14 @@
         NSURL *storeURL = [NSURL fileURLWithPath:myPathDocs];
         
         NSError *error = nil;
+        
+        //Automatic migration
+        NSDictionary* options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                                 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+        
         self.coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.model] autorelease];
-        if (![self.coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+        if (![self.coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error])
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         
         self.context = [[[NSManagedObjectContext alloc] init] autorelease];
