@@ -44,7 +44,11 @@
 
 + (void) setString:(NSString*)val forKey:(NSString*)key
 {
-    [self.dic setObject:val forKey:key];
+    if(val == nil){
+        [self clearKey:key];
+    }else{
+        [self.dic setObject:val forKey:key];
+    }
     [self save];
 }
 
