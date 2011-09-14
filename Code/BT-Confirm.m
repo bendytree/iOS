@@ -31,8 +31,13 @@ static id context = NULL;
 }
 
 + (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{    
-    [delegate performSelector:selector withObject:[NSNumber numberWithBool:buttonIndex == 1] withObject:context];
+{
+    BOOL hasBoolArgument = [NSStringFromSelector(selector) contains:@":"];
+    BOOL isConfirmed = buttonIndex == 1;
+    
+    if(isConfirmed || hasBoolArgument){
+        [delegate performSelector:selector withObject:[NSNumber numberWithBool:isConfirmed] withObject:context];
+    }
 }
 
 @end
