@@ -14,6 +14,7 @@
 
 - (bool) contains:(NSString*)subtext;
 - (bool) containsIgnoreCase:(NSString*)subtext;
+- (NSString*) replace:(NSString*)target with:(NSString*)replacement;
 - (bool) isEqualIgnoreCase:(NSString*)text;
 - (NSArray*) split:(NSString*)splitter;
 - (NSString*) format:(id)obj;

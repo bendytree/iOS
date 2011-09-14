@@ -22,6 +22,11 @@
     return [self rangeOfString:subtext options:NSCaseInsensitiveSearch].length != 0;
 }
 
+- (NSString*) replace:(NSString*)target with:(NSString*)replacement
+{
+    return [self stringByReplacingOccurrencesOfString:target withString:replacement];
+}
+
 - (bool) isEqualIgnoreCase:(NSString*)text
 {
     return [self caseInsensitiveCompare:text] == NSOrderedSame;
