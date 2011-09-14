@@ -61,6 +61,7 @@
 #import "BT-Callback.h"
 #import "BT-Image.h"
 #import "BT-UILabel.h"
+#import "BT-Logger.h"
 
 
 /**
