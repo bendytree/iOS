@@ -11,9 +11,14 @@
 #import <Foundation/Foundation.h>
 
 @interface Loading : NSObject
+
 + (void) show;
-+ (void) showOn:(UIView*)view;
++ (void) show:(NSString*)msg;
++ (void) showOn:(UIView*)parentView;
++ (void) show:(NSString*)msg on:(UIView*)parentView;
+
 + (void) hide;
+
 @end
 
 #endif

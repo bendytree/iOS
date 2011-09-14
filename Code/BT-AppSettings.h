@@ -18,6 +18,7 @@
 
 + (bool) getBool:(NSString*)key;
 + (void) setBool:(bool)val forKey:(NSString*)key;
++ (int) getBool:(NSString*)key orDefault:(BOOL)def;
 
 + (NSString*) getString:(NSString*)key orDefault:(NSString*)def;
 + (void) setString:(NSString*)val forKey:(NSString*)key;

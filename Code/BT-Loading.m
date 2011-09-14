@@ -28,14 +28,33 @@ static UIView* _loadingView = NULL;
 
 + (void) show
 {
-    [self showOn:[[UIApplication sharedApplication] keyWindow]];
+    [self show:nil];
+}
+
++ (void) show:(NSString*)msg
+{
+    [self show:msg on:nil];
 }
 
 + (void) showOn:(UIView*)parentView
 {
+    [self show:nil on:parentView];
+}
+
++ (void) show:(NSString*)msg on:(UIView*)parentView
+{
+    if(parentView == nil)
+        parentView = [[UIApplication sharedApplication] keyWindow];
+    
+    if(msg == nil)
+        msg = @"loading";
+    
     UIView* v = [self loadingView];
     [parentView addSubview:v];
     [v setFrame:parentView.frame];
+    
+    UILabel* lbl = (UILabel*)[v viewWithTag:99];
+    lbl.text = msg;
 }
 
 + (void) hide

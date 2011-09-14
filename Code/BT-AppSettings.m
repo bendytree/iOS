@@ -57,6 +57,14 @@
     return [self hasValue:key] && [((NSNumber*)[self get:key]) boolValue];
 }
 
++ (int) getBool:(NSString*)key orDefault:(BOOL)def
+{
+    if(![self hasValue:key])
+        return def;
+    
+    return [((NSNumber*)[self get:key]) boolValue];
+}
+
 + (void) setBool:(bool)val forKey:(NSString*)key
 {
     [self.dic setObject:[NSNumber numberWithBool:val] forKey:key];
