@@ -9,3 +9,9 @@
 #else
 #   define Log(...)
 #endif
+
+#ifdef DEBUG
+#   define LogThread NSLog(@"%s thread: %@", __PRETTY_FUNCTION__, [NSThread isMainThread] ? @"MAIN" : @"BG");
+#else
+#   define LogThread
+#endif
