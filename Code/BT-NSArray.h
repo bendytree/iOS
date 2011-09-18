@@ -13,6 +13,7 @@
 
 - (bool) contains:(id)example;
 - (id) first;
+- (NSMutableArray*) first:(int)count;
 - (id) last;
 - (NSString*) join:(NSString*)separator;
 

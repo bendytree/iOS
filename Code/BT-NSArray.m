@@ -32,6 +32,15 @@
     return [self objectAtIndex:0];
 }
 
+- (NSMutableArray*) first:(int)count
+{
+    NSMutableArray* items = [NSMutableArray array];
+    for(int i=0; i<[self count] && i<count; i++){
+        [items addObject:[self objectAtIndex:i]];
+    }
+    return items;
+}
+
 - (id) last
 {
     return [self lastObject];
