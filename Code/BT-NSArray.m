@@ -29,6 +29,8 @@
 
 - (id) first
 {
+    if([self count] == 0) return nil;
+    
     return [self objectAtIndex:0];
 }
 
@@ -36,6 +38,15 @@
 {
     NSMutableArray* items = [NSMutableArray array];
     for(int i=0; i<[self count] && i<count; i++){
+        [items addObject:[self objectAtIndex:i]];
+    }
+    return items;
+}
+
+- (NSMutableArray*) skip:(int)count
+{
+    NSMutableArray* items = [NSMutableArray array];
+    for(int i=count; i<[self count]; i++){
         [items addObject:[self objectAtIndex:i]];
     }
     return items;
