@@ -9,15 +9,15 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface NSString (BT)
 
 - (bool) contains:(NSString*)subtext;
 - (bool) containsIgnoreCase:(NSString*)subtext;
 - (NSString*) replace:(NSString*)target with:(NSString*)replacement;
-- (bool) isEqualIgnoreCase:(NSString*)text;
+- (bool) equals:(NSString*)text;
 - (NSArray*) split:(NSString*)splitter;
-- (NSString*) format:(id)obj;
+//- (NSString*) format: (id) firstObject, ... NS_REQUIRES_NIL_TERMINATION;
+- (NSString*) inject:(id)obj;
 
 @end
 

@@ -8,6 +8,7 @@
 //
 
 #import "BT-NSString.h"
+#import "BT-NSArray.h"
 
 
 @implementation NSString (BT)
@@ -27,7 +28,7 @@
     return [self stringByReplacingOccurrencesOfString:target withString:replacement];
 }
 
-- (bool) isEqualIgnoreCase:(NSString*)text
+- (bool) equals:(NSString*)text
 {
     return [self caseInsensitiveCompare:text] == NSOrderedSame;
 }
@@ -37,7 +38,7 @@
     return [self componentsSeparatedByString:splitter];
 }
 
-- (NSString*) format:(id)obj
+- (NSString*) inject:(id)obj
 {
     NSMutableString* format = [NSMutableString string];
     
