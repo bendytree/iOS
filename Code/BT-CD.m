@@ -143,6 +143,11 @@
     return count;
 }
 
++ (BOOL) exists:(Class)modelClass where:(NSPredicate*)filter
+{
+    return [CD count:modelClass where:filter] > 0;
+}
+
 + (id) new:(Class)modelClass
 {
     CD* cd = [CD current];

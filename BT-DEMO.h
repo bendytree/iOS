@@ -18,11 +18,13 @@
  *
  *  POSSIBLE DEPENDENCIES:
  *
- *      SBJSON:         https://github.com/stig/json-framework/
+ *      SBJSON:           https://github.com/stig/json-framework/
  *
- *      RegexKitLite:   http://regexkit.sourceforge.net
+ *      RegexKitLite:     http://regexkit.sourceforge.net
  *
- *      ASIHttpRequest: http://allseeing-i.com/ASIHTTPRequest/Setup-instructions
+ *      ASIHttpRequest:   http://allseeing-i.com/ASIHTTPRequest/Setup-instructions
+ *
+ *      facebook-ios-sdk: https://github.com/facebook/facebook-ios-sdk
  *
  */
 
@@ -89,6 +91,20 @@
 #define BT_CD 1
 
 #import "BT-CD.h"
+
+
+
+/**
+ *  FACEBOOK
+ *
+ *  A wrapper for the facebook-ios-sdk library
+ *
+ *  Dependencies: facebook-ios-sdk
+ */
+
+#define BT_FB 1
+
+#import "BT-FB.h"
 
 
 

@@ -21,6 +21,7 @@
 + (NSMutableArray*) find:(Class)modelClass where:(NSPredicate*)filter sort:(NSSortDescriptor*)sort max:(int)max;
 + (int) count:(Class)modelClass;
 + (int) count:(Class)modelClass where:(NSPredicate*)filter;
++ (BOOL) exists:(Class)modelClass where:(NSPredicate*)filter;
 + (id) new:(Class)modelClass;
 + (void) deleteAll:(Class)modelClass;
 + (void) delete:(NSManagedObject*)obj;
