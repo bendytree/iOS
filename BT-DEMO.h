@@ -64,6 +64,7 @@
 #import "BT-Image.h"
 #import "BT-UILabel.h"
 #import "BT-Logger.h"
+#import "BT-JavaScript.h"
 
 
 /**
