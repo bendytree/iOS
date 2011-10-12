@@ -92,6 +92,11 @@
     [self setFrame: CGRectMake(self.frame.origin.x, self.superview.frame.size.height-self.frame.size.height, self.frame.size.width, self.frame.size.height)];
 }
 
+- (void) moveToTop
+{
+    [self setFrame: CGRectMake(0, self.frame.origin.y, self.frame.size.width, self.frame.size.height)];
+}
+
 - (void) replaceWith:(UIView*)newView
 {
     [newView setFrame:self.frame];

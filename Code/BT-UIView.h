@@ -28,6 +28,7 @@
 - (void) moveX:(int)amount;
 - (void) moveX:(int)xAmount andY:(int)yAmount;
 - (void) moveToBottom;
+- (void) moveToTop;
 - (void) replaceWith:(UIView*)newView;
 - (void) setSameSizeAsParent;
 
