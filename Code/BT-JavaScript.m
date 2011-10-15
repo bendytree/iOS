@@ -29,7 +29,7 @@
         [window addSubview:self.web];
         [self.web setHidden:YES];
         
-        [self.web loadHTMLString:[self page_html] baseURL:[NSURL URLWithString:@"http://google.com"]];
+        [self.web loadHTMLString:[self page_html] baseURL:[[NSBundle mainBundle] resourceURL]];
         
     }
     return self;
@@ -41,16 +41,46 @@
     [super dealloc];
 }
 
++ (void) includeScript:(NSString*)path
+{
+    NSString* content = [NSString stringWithContentsOfFile:path
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    
+    [self runStatement:content];
+}
+
+//must be run on main thread
+const NSString* statementResult = nil;
 + (NSString*) runStatement:(NSString*)script
 {
+    if(statementResult){
+        [statementResult autorelease];
+        statementResult = nil;
+    }
+    
+    if ([NSThread isMainThread] == NO) {
+        [self performSelector:@selector(runStatement:) onThread:[NSThread mainThread] withObject:script waitUntilDone:YES];
+        NSString* result = [statementResult autorelease];
+        statementResult = nil;
+        return result;
+    }
+    
     JavaScript* js = [self current];
-    return [js.web stringByEvaluatingJavaScriptFromString:script];
+    NSString* result = [js.web stringByEvaluatingJavaScriptFromString:script];
+    statementResult = [result retain];
+    return result;
 }
 
 + (NSString*) runFunctionBody:(NSString*)script
 {
     script = [NSString stringWithFormat:@"(function(){ %@ })()", script];
     return [self runStatement:script];
+}
+
++ (void) initialize
+{
+    [self current];
 }
 
 static JavaScript* _current = NULL;

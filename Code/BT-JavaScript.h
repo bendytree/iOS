@@ -12,6 +12,8 @@
 
 @interface JavaScript : NSObject
 
++ (void) initialize;
++ (void) includeScript:(NSString*)path;
 + (NSString*) runStatement:(NSString*)script;
 + (NSString*) runFunctionBody:(NSString*)script;
 

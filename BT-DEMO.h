@@ -47,6 +47,7 @@
 #import "BT-NSObject.h"
 #import "BT-NSString.h"
 #import "BT-NSDate.h"
+#import "BT-FuzzyTime.h"
 #import "BT-Reflection.h"
 #import "BT-CoreTypeConversion.h"
 #import "BT-UIView.h"

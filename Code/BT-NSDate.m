@@ -46,6 +46,12 @@ static NSDateFormatter* _formatter = NULL;
         if(date) return date;
     }
     
+    if([str length] == 18){ //  /Date(1205337265)/
+        int seconds = [[str substringWithRange:NSMakeRange(6, 10)] intValue];
+        date = [NSDate dateWithTimeIntervalSince1970:seconds]; 
+        return date;
+    }
+    
     [df setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"];
     date = [df dateFromString:str];
     if(date) return date;

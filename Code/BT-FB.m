@@ -18,7 +18,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.facebook = [[[Facebook alloc] initWithAppId:@"242857252432172" andDelegate:nil] autorelease];
+        self.facebook = [[[Facebook alloc] initWithAppId:@"210511395662778" andDelegate:nil] autorelease];
     }
     return self;
 }
