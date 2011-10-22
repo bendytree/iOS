@@ -14,7 +14,7 @@
 
 + (BOOL) isIPad;
 + (bool) isSimulator;
-+ (NSString*) udid;
++ (NSString*) udid __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_NA,__MAC_NA,__IPHONE_2_0,__IPHONE_5_0);
 
 @end
 

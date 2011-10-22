@@ -12,13 +12,10 @@
 
 @implementation Alert
 
-
-+ (void) show:(NSString*)title message:(NSString*)msg
-{
-    UIAlertView *someError = [[UIAlertView alloc] initWithTitle: title message:msg delegate:nil cancelButtonTitle: @"Ok" otherButtonTitles: nil];
-    [someError show];
-    [someError release];
-}
+static UIAlertView* alert = NULL;
+static id delegate = NULL;
+static SEL selector = NULL;
+static id context = NULL;
 
 
 + (void) show:(NSString*)message
@@ -26,6 +23,35 @@
     [self show:@"" message:message];
 }
 
++ (void) show:(NSString*)title message:(NSString*)msg
+{
+    [self show:title message:msg delegate:nil selector:nil context:nil];
+}
+
++ (void) show:(NSString*)title message:(NSString*)message delegate:(id)del selector:(SEL)sel
+{
+    [self show:title message:message delegate:del selector:sel context:nil];
+}
+
++ (void) show:(NSString*)title message:(NSString*)message delegate:(id)del selector:(SEL)sel context:(id)con
+{    
+    delegate = del;
+    selector = sel;
+    context = con;
+    
+    alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    alert.delegate = self;
+    [alert show];
+}
+
++ (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [alert autorelease];
+    alert = nil;
+    
+    if(delegate != nil)
+        [delegate performSelector:selector withObject:context];
+}
 
 @end
 

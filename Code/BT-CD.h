@@ -22,7 +22,7 @@
 + (int) count:(Class)modelClass;
 + (int) count:(Class)modelClass where:(NSPredicate*)filter;
 + (BOOL) exists:(Class)modelClass where:(NSPredicate*)filter;
-+ (id) new:(Class)modelClass;
++ (id) create:(Class)modelClass;
 + (void) deleteAll:(Class)modelClass;
 + (void) delete:(NSManagedObject*)obj;
 

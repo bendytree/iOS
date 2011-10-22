@@ -46,8 +46,14 @@ static NSDateFormatter* _formatter = NULL;
         if(date) return date;
     }
     
-    if([str length] == 18){ //  /Date(1205337265)/
-        int seconds = [[str substringWithRange:NSMakeRange(6, 10)] intValue];
+    if([str length] == 18){
+        long long seconds = [[str substringWithRange:NSMakeRange(6, 10)] longLongValue];
+        date = [NSDate dateWithTimeIntervalSince1970:seconds]; 
+        return date;
+    }
+    
+    if([str length] == 19){
+        long long seconds = [[str substringWithRange:NSMakeRange(6, 11)] longLongValue];
         date = [NSDate dateWithTimeIntervalSince1970:seconds]; 
         return date;
     }

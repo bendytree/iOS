@@ -148,7 +148,7 @@
     return [CD count:modelClass where:filter] > 0;
 }
 
-+ (id) new:(Class)modelClass
++ (id) create:(Class)modelClass
 {
     CD* cd = [CD current];
     return [NSEntityDescription insertNewObjectForEntityForName:[modelClass description] inManagedObjectContext:cd.context];

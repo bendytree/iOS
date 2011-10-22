@@ -66,7 +66,7 @@
 #import "BT-UILabel.h"
 #import "BT-Logger.h"
 #import "BT-JavaScript.h"
-
+#import "BT-Confirm.h"
 
 /**
  *  JSON
@@ -93,26 +93,6 @@
 #define BT_CD 1
 
 #import "BT-CD.h"
-
-
-
-/**
- *  FACEBOOK
- *
- *  A wrapper for the facebook-ios-sdk library
- *
- *  Dependencies: facebook-ios-sdk
- */
-
-#define BT_FB 1
-
-#import "BT-FB.h"
-
-
-
-
-
-
 
 
 
