@@ -8,10 +8,10 @@
 //
 
 #import "BT-JSON.h"
-#import "JSON.h"
 #import "BT-NSArray.h"
 #import <objc/runtime.h>
 #import "BT-CoreTypeConversion.h"
+#import "JSON.h"
 
 
 @implementation NSObject (BTJSON)

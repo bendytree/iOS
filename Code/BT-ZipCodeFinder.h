@@ -23,6 +23,7 @@
 @property (assign) id<ZipCodeFinderDelegate> delegate;
 
 - (id) initWithDelegate:(id<ZipCodeFinderDelegate>)_delegate;
+- (void) find;
 
 @end
 

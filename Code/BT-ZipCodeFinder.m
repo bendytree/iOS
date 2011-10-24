@@ -23,12 +23,20 @@
     self = [super init];
     if (self) {
         self.delegate = _delegate;
-        
-        self.manager = [[[CLLocationManager alloc] init] autorelease];
-        self.manager.delegate = self;
-        [self.manager startUpdatingLocation];
     }
     return self;
+}
+
+- (void) find
+{
+    if([NSThread isMainThread] == NO){
+        [self performSelectorOnMainThread:@selector(find) withObject:nil waitUntilDone:NO];
+        return;
+    }
+    
+    self.manager = [[[CLLocationManager alloc] init] autorelease];
+    self.manager.delegate = self;
+    [self.manager startUpdatingLocation];
 }
 
 - (void)dealloc {

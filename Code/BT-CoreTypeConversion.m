@@ -54,6 +54,7 @@
             [dic setObject:[val toCoreType] forKey:propertyName];
         }
     }
+    // [dic setObject:NSStringFromClass([self class]) forKey:@"_oc_class"];
     return dic;
 }
 
@@ -72,9 +73,25 @@
     
     //if not an array, ct must be a Dictionary
     if([self descendsFrom:[NSDictionary class]] == NO)
-        return nil;
+        return self;
     
     NSDictionary* dic = (NSDictionary*)self;
+    
+    /*
+    //try getting the class from a special field
+    if(cls == nil)
+    {
+        NSString* _class = [dic objectForKey:@"_oc_class"];
+        if(_class){
+            cls = NSClassFromString(_class);
+        }
+    }
+     */
+    
+    //still no target class? just return dictionary
+    if(cls == nil)
+        return dic;
+    
     id obj = [[[cls alloc] init] autorelease];
     
     NSDictionary* arrayClasses = [NSDictionary dictionary];
@@ -104,14 +121,9 @@
             
             //Arrays
         }else if([propertyType descendsFrom:[NSArray class]]){ 
-            //Is a custom type defined?
-            if([arrayClasses objectForKey:propertyName]){
-                Class arrayClass = [arrayClasses objectForKey:propertyName];
-                [obj setValue:[propertyVal toCustomType:arrayClass] forKey:propertyName];
-            }else{
-                //No custom type, so just assign the array
-                [obj setValue:propertyVal forKey:propertyName];
-            }
+            //Try using the custom class
+            Class arrayClass = [arrayClasses objectForKey:propertyName];
+            [obj setValue:[propertyVal toCustomType:arrayClass] forKey:propertyName];
             
         // Same type, so just assign
         }else if([valType descendsFrom:propertyType]){
