@@ -27,6 +27,14 @@
     return NO;
 }
 
+- (bool) containsNumber:(NSNumber*)num
+{
+    for(NSNumber* el in self)
+        return [el compare:num] == NSOrderedSame;
+    
+    return NO;
+}
+
 - (id) first
 {
     if([self count] == 0) return nil;

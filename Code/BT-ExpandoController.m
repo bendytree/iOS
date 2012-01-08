@@ -41,6 +41,7 @@
     [super viewDidLoad];
     
     self.scroller = [[[UIScrollView alloc] initWithFrame:self.view.frame] autorelease];
+    [self.scroller setX:0 andY:0];
     [self.view addSubview:self.scroller];
     
     [self.view setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];

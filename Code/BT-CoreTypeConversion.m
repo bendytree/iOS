@@ -106,11 +106,11 @@
         if(!propertyVal || [NSNull null] == propertyVal) continue;
         
         //save original value of dicitonary in this specially named property
-        if([propertyName isEqualToString:@"orig"])
-        {
-            [obj setValue:self forKey:@"orig"];
-            continue;
-        }
+        //if([propertyName isEqualToString:@"orig"])
+       // {
+        //    [obj setValue:self forKey:@"orig"];
+        //    continue;
+        //}
         
         //NSLog(@"%@.%@ = '%@'", cls, propertyName, propertyVal);
         

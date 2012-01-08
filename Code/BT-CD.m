@@ -166,6 +166,13 @@
     [[CD current].context deleteObject:obj];
 }
 
++ (void) delete:(Class)modelClass where:(NSPredicate*)filter
+{
+    for(NSManagedObject* obj in [CD find:modelClass where:filter]){
+        [CD delete:obj]; 
+    }
+}
+
 
 
 #pragma mark - Singleton

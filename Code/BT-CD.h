@@ -25,6 +25,7 @@
 + (id) create:(Class)modelClass;
 + (void) deleteAll:(Class)modelClass;
 + (void) delete:(NSManagedObject*)obj;
++ (void) delete:(Class)modelClass where:(NSPredicate*)filter;
 
 @end
 

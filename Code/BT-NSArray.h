@@ -12,6 +12,7 @@
 @interface NSArray (BT)
 
 - (bool) contains:(id)example;
+- (bool) containsNumber:(NSNumber*)num;
 - (id) first;
 - (NSMutableArray*) first:(int)count;
 - (NSMutableArray*) skip:(int)count;
