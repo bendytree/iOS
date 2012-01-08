@@ -38,6 +38,7 @@
 
 #define BT_BASICS 1
 
+#import "BT-CustomArray.h"
 #import "BT-NSArray.h"
 #import "BT-NSMutableArray.h"
 #import "BT-NSObject.h"

@@ -51,7 +51,7 @@
 }
 
 //must be run on main thread
-const NSString* statementResult = nil;
+static NSString* statementResult = nil;
 + (NSString*) runStatement:(NSString*)script
 {
     if(statementResult){
@@ -61,7 +61,8 @@ const NSString* statementResult = nil;
     
     if ([NSThread isMainThread] == NO) {
         [self performSelector:@selector(runStatement:) onThread:[NSThread mainThread] withObject:script waitUntilDone:YES];
-        NSString* result = [statementResult autorelease];
+        NSString* result = statementResult;
+        [statementResult autorelease];
         statementResult = nil;
         return result;
     }

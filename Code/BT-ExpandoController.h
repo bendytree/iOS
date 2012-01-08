@@ -23,4 +23,4 @@
 
 @end
 
-#endif BT_UI
+#endif
