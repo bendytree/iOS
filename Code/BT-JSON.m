@@ -11,7 +11,7 @@
 #import "BT-NSArray.h"
 #import <objc/runtime.h>
 #import "BT-CoreTypeConversion.h"
-#import "JSON.h"
+#import "SBJSON.h"
 
 
 @implementation NSObject (BTJSON)
