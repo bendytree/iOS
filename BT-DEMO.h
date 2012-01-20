@@ -63,7 +63,7 @@
 #import "BT-Logger.h"
 #import "BT-JavaScript.h"
 #import "BT-Confirm.h"
-
+#import "BT-Macros.h"
 
 /**
  *  JSON
