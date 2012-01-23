@@ -69,6 +69,22 @@ static NSDateFormatter* _formatter = NULL;
     return nil;
 }
 
++ (NSDate*) parseRailsDate:(NSString *)dateString 
+{
+    NSDateFormatter *rfc3339TimestampFormatterWithTimeZone = [[NSDateFormatter alloc] init];
+    [rfc3339TimestampFormatterWithTimeZone setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease]];
+    [rfc3339TimestampFormatterWithTimeZone setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    
+    NSDate *theDate = nil;
+    NSError *error = nil; 
+    if (![rfc3339TimestampFormatterWithTimeZone getObjectValue:&theDate forString:dateString range:nil error:&error]) {
+        NSLog(@"Date '%@' could not be parsed: %@", dateString, error);
+    }
+    
+    [rfc3339TimestampFormatterWithTimeZone release];
+    return theDate;
+}
+
 @end
 
 

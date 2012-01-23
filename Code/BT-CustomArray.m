@@ -1,6 +1,7 @@
 #if BT_BASICS
 
-#pragma GCC diagnostic ignored "-Wincomplete-implementation"
+#pragma GCC diagnostic warning "-w" 
+//incomplete-implementation
 
 //
 //  BT-CustomArray.m

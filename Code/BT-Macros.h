@@ -13,7 +13,7 @@
 + (classname*) current;
 
 
-#define SINGLETON(classname) \
+#define SINGLETON_IMPLEMENTATION(classname) \
 static classname* _current = NULL;\
 + (classname*) current\
 {\

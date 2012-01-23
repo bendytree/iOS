@@ -64,6 +64,7 @@
 #import "BT-JavaScript.h"
 #import "BT-Confirm.h"
 #import "BT-Macros.h"
+#import "BT-Modal.h"
 
 /**
  *  JSON

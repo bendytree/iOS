@@ -114,6 +114,12 @@
     return results;
 }
 
++ (id) firstOrNil:(Class)modelClass where:(NSPredicate*)filter
+{
+    NSArray* all = [self find:modelClass where:filter sort:nil max:1];
+    return [all count] == 0 ? nil : [all first];
+}
+
 + (int) count:(Class)modelClass
 {
     return [self count:modelClass where:nil];

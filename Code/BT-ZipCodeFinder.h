@@ -1,5 +1,7 @@
 #if BT_LOCATION
 
+#pragma GCC diagnostic warning "-w" 
+
 //
 //  BT-ZipCode.h
 //  BuzzamApp

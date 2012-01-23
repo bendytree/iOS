@@ -14,6 +14,7 @@
 - (NSString*) toString:(NSString*)dateFormat;
 + (NSDate*) parse:(NSString*)str;
 + (NSDate*) parse:(NSString*)str format:(NSString*)format;
++ (NSDate*) parseRailsDate:(NSString *)dateString;
 @end
 
 

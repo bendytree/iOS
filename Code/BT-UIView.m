@@ -87,6 +87,11 @@
     [self setFrame: CGRectMake(size.width, size.height, self.frame.size.width, self.frame.size.height)];
 }
 
+- (void) setSize:(CGSize)size
+{
+    [self setFrame: CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width, size.height)];
+}
+
 - (void) moveToBottom
 {
     [self setFrame: CGRectMake(self.frame.origin.x, self.superview.frame.size.height-self.frame.size.height, self.frame.size.width, self.frame.size.height)];

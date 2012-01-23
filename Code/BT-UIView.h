@@ -31,6 +31,7 @@
 - (void) moveToTop;
 - (void) replaceWith:(UIView*)newView;
 - (void) setSameSizeAsParent;
+- (void) setSize:(CGSize)size;
 
 @end
 

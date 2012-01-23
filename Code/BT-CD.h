@@ -15,6 +15,7 @@
 }
 
 + (void) save;
++ (id) firstOrNil:(Class)modelClass where:(NSPredicate*)filter;
 + (NSMutableArray*) find:(Class)modelClass;
 + (NSMutableArray*) find:(Class)modelClass where:(NSPredicate*)filter;
 + (NSMutableArray*) find:(Class)modelClass where:(NSPredicate*)filter sort:(NSSortDescriptor*)sort;
