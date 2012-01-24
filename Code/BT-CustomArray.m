@@ -33,6 +33,11 @@
 
 #pragma Forward Invocations to Array
 
+
+- (id)initWithObjects:(const id [])objects count:(NSUInteger)cnt; {
+    return [self.array initWithObjects:objects count:cnt];
+}
+
 - (void)forwardInvocation:(NSInvocation *)invocation{
     [invocation invokeWithTarget:self.array];
 }
