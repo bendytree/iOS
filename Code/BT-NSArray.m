@@ -42,6 +42,13 @@
     return [self objectAtIndex:0];
 }
 
+- (id) firstOrNil
+{
+    if([self count] == 0) return nil;
+    
+    return [self objectAtIndex:0];
+}
+
 - (NSMutableArray*) first:(int)count
 {
     NSMutableArray* items = [NSMutableArray array];

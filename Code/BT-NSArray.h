@@ -13,6 +13,7 @@
 
 - (bool) contains:(id)example;
 - (bool) containsNumber:(NSNumber*)num;
+- (id) firstOrNil;
 - (id) first;
 - (NSMutableArray*) first:(int)count;
 - (NSMutableArray*) skip:(int)count;

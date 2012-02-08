@@ -20,7 +20,7 @@
 
 - (id)initWithController:(UIViewController*)_controller
 {
-    self = [super initWithNibName:nil bundle:nil];
+    self = [super initWithNibName:@"BT-FramedModalController" bundle:nil];
     if (self) {
         self.controller = _controller;
     }
@@ -42,9 +42,20 @@
     [super viewDidLoad];
     
     [placeholder replaceWith:self.controller.view];
-    self.controller.view.layer.borderWidth = 10;
-    self.controller.view.layer.borderColor = [[UIColor colorWithWhite:.5 alpha:.5] CGColor];
     self.controller.view.layer.cornerRadius = 6;
+    border.layer.cornerRadius = 6;
+    border.layer.borderWidth = 10;
+    border.layer.borderColor = [[UIColor colorWithWhite:.5 alpha:.5] CGColor];
+    [border.layer setMasksToBounds:YES];
+    [border setOpaque:NO];
+    [border setBackgroundColor:[UIColor clearColor]];
+    
+    [btnClose setBackgroundColor:[UIColor blackColor]];
+    btnClose.layer.borderWidth = 2;
+    btnClose.layer.cornerRadius = 15;
+    btnClose.layer.borderColor = [[UIColor whiteColor] CGColor];
+    btnClose.titleLabel.textColor = [UIColor whiteColor];
+    [self.view bringSubviewToFront:btnClose];
 }
 
 - (void)viewDidUnload

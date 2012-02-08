@@ -11,6 +11,8 @@
 @interface FramedModalController : UIViewController{
     
     IBOutlet UIView* placeholder;
+    IBOutlet UIView* border;
+    IBOutlet UIButton* btnClose;
     
 }
 

@@ -13,14 +13,13 @@
 
 @interface ModalInfo : NSObject
 @property (retain) UIViewController* controller;
-@property (readwrite, copy) ModalCompletionHandler completion;
+@property (copy) ModalCompletionHandler completion;
 @end
 @implementation ModalInfo
 @synthesize controller, completion;
 
 - (void)dealloc {
     self.controller = nil;
-    [completion release];
     self.completion = nil;
     
     [super dealloc];
@@ -82,8 +81,40 @@
     //show it
     UIWindow* w = [Modal win];
     [w addSubview:controller.view];
-    [controller.view setSize:w.frame.size];
-    [controller.view setOrigin:CGSizeMake(0, 0)];
+    [controller.view setSize:[[UIScreen mainScreen] applicationFrame].size];
+    [controller.view setOrigin:CGSizeMake(0, w.frame.size.height-controller.view.frame.size.height)];
+    
+    
+    
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation
+                                      animationWithKeyPath:@"transform"];
+    
+    CATransform3D scale1 = CATransform3DMakeScale(0.8, 0.8, 1);
+    CATransform3D scale2 = CATransform3DMakeScale(1.05, 1.05, 1);
+    CATransform3D scale3 = CATransform3DMakeScale(0.9, 0.9, 1);
+    CATransform3D scale4 = CATransform3DMakeScale(1.0, 1.0, 1);
+    
+    NSArray *frameValues = [NSArray arrayWithObjects:
+                            [NSValue valueWithCATransform3D:scale1],
+                            [NSValue valueWithCATransform3D:scale2],
+                            [NSValue valueWithCATransform3D:scale3],
+                            [NSValue valueWithCATransform3D:scale4],
+                            nil];
+    [animation setValues:frameValues];
+    
+    NSArray *frameTimes = [NSArray arrayWithObjects:
+                           [NSNumber numberWithFloat:0.0],
+                           [NSNumber numberWithFloat:0.4],
+                           [NSNumber numberWithFloat:0.8],
+                           [NSNumber numberWithFloat:1.0],
+                           nil];    
+    [animation setKeyTimes:frameTimes];
+    
+    animation.fillMode = kCAFillModeForwards;
+    animation.removedOnCompletion = NO;
+    animation.duration = .2;
+    
+    [controller.view.layer addAnimation:animation forKey:@"popup"];
 }
 
 + (void) pop
