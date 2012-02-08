@@ -37,6 +37,14 @@
 
 @synthesize intervals;
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.intervals = [NSMutableArray array];
+    }
+    return self;
+}
+
 + (void) cancel:(SEL)selector on:(id)target
 {
     NSString* sel = NSStringFromSelector(selector);
