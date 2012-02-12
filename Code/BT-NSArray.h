@@ -23,6 +23,13 @@
 @end
 
 
+@interface NSSet (BT_NSArray)
+
+- (NSArray*) toArray;
+
+@end
+
+
 @interface NSObject (BT_NSArray)
 
 - (NSArray*) toArray;

@@ -79,6 +79,17 @@
 
 @end
 
+
+@implementation NSSet (BT_NSArray)
+
+- (NSArray*) toArray
+{
+    return [self allObjects];
+}
+
+@end
+
+
 @implementation NSObject (BT_NSArray)
 
 - (NSArray*) toArray

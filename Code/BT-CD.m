@@ -61,11 +61,13 @@
     NSError *error = nil;
     if (cd.context != nil)
     {
+        [cd.context lock];
         if ([cd.context hasChanges] && ![cd.context save:&error])
         {
             NSLog(@"Unresolved error saving %@, %@", error, [error userInfo]);
             //abort();
         } 
+        [cd.context unlock];
     }
 }
 
@@ -103,8 +105,12 @@
     if(max >= 0)
         [request setFetchLimit:max];
     
-    NSError *error = nil;    
+    NSError *error = nil;
+    NSLog(@"CD finding on main thread: %@", [NSThread isMainThread] ? @"YES" : @"NO");
+    
+    [cd.context lock];
     NSMutableArray* results = [NSMutableArray arrayWithArray:[cd.context executeFetchRequest:request error:&error]];
+    [cd.context unlock];
     [request release];
     
     if(error){
@@ -138,8 +144,10 @@
     if(filter != nil)
         [request setPredicate:filter];
     
-    NSError *error = nil;    
+    NSError *error = nil; 
+    [cd.context lock];   
     int count = [cd.context countForFetchRequest:request error:&error];
+    [cd.context unlock];
     [request release];
     
     if(error){
@@ -178,7 +186,6 @@
         [CD delete:obj]; 
     }
 }
-
 
 
 #pragma mark - Singleton
