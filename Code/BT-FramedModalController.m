@@ -43,6 +43,7 @@
     
     [placeholder replaceWith:self.controller.view];
     self.controller.view.layer.cornerRadius = 6;
+    self.view.layer.cornerRadius = 6;
     border.layer.cornerRadius = 6;
     border.layer.borderWidth = 10;
     border.layer.borderColor = [[UIColor colorWithWhite:.5 alpha:.5] CGColor];

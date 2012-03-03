@@ -87,6 +87,11 @@
     [self setFrame: CGRectMake(size.width, size.height, self.frame.size.width, self.frame.size.height)];
 }
 
+- (void) setOriginPoint:(CGPoint)size
+{
+    [self setFrame: CGRectMake(size.x, size.y, self.frame.size.width, self.frame.size.height)];
+}
+
 - (void) setSize:(CGSize)size
 {
     [self setFrame: CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width, size.height)];
@@ -107,7 +112,7 @@
     [newView setFrame:self.frame];
     [newView setBounds:self.bounds];
     [newView setAutoresizingMask:self.autoresizingMask];
-    [self.superview addSubview:newView];
+    [self.superview insertSubview:newView aboveSubview:self];
     [self removeFromSuperview];
 }
 

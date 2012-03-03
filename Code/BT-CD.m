@@ -106,7 +106,7 @@
         [request setFetchLimit:max];
     
     NSError *error = nil;
-    NSLog(@"CD finding on main thread: %@", [NSThread isMainThread] ? @"YES" : @"NO");
+    //NSLog(@"CD finding on main thread: %@", [NSThread isMainThread] ? @"YES" : @"NO");
     
     [cd.context lock];
     NSMutableArray* results = [NSMutableArray arrayWithArray:[cd.context executeFetchRequest:request error:&error]];

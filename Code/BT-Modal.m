@@ -124,7 +124,8 @@
     
     ModalInfo* info = [m.modalInfos last];
     [info.controller.view removeFromSuperview];
-    info.completion();
+    if(info.completion)
+        info.completion(); 
     [m.modalInfos removeObject:info];
 }
 

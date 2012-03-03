@@ -32,6 +32,7 @@
 - (void) replaceWith:(UIView*)newView;
 - (void) setSameSizeAsParent;
 - (void) setSize:(CGSize)size;
+- (void) setOriginPoint:(CGPoint)size;
 
 @end
 
