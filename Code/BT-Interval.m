@@ -66,7 +66,7 @@
     IntervalInfo* t = [[[IntervalInfo alloc] init] autorelease];
     t.obj = target;
     t.sel = NSStringFromSelector(selector);
-    t.timer = [NSTimer scheduledTimerWithTimeInterval:delay target:target selector:selector userInfo:nil repeats:NO];
+    t.timer = [NSTimer scheduledTimerWithTimeInterval:delay target:target selector:selector userInfo:nil repeats:YES];
     
     [[self current].intervals addObject:t];
 }

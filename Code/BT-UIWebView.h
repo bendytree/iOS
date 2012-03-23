@@ -12,6 +12,7 @@
 @interface UIWebView (BT)
 
 - (void) setScrolls:(bool)doScroll;
+- (void) hideShadows;
 
 @end
 

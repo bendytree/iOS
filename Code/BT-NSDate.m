@@ -85,6 +85,37 @@ static NSDateFormatter* _formatter = NULL;
     return theDate;
 }
 
+- (NSString*) toRelativeString
+{
+    NSTimeInterval seconds = [self timeIntervalSinceNow] * -1.0;
+    
+    if (seconds < 60)
+        return @"just now";
+    if (seconds < 2*60)
+        return @"a minute ago";
+    if (seconds < 60*60)
+        return [NSString stringWithFormat:@"%i minutes ago", (int)floorf(seconds/60)];
+    if (seconds < 2*60*60)
+        return @"an hour ago";
+    if (seconds < 24*60*60)
+        return [NSString stringWithFormat:@"%i hours ago", (int)floorf(seconds/(60*60))];
+    if (seconds < 2*24*60*60)
+        return @"a day ago";
+    if (seconds < 7*24*60*60)
+        return [NSString stringWithFormat:@"%i days ago", (int)floorf(seconds/(24*60*60))];
+    if (seconds < 2*7*24*60*60)
+        return @"a week ago";
+    if (seconds < 30*24*60*60)
+        return [NSString stringWithFormat:@"%i weeks ago", (int)floorf(seconds/(7*24*60*60))];
+    if (seconds < 2*30*24*60*60)
+        return @"a month ago";
+    if (seconds < 12*30*24*60*60)
+        return [NSString stringWithFormat:@"%i months ago", (int)floorf(seconds/(30*24*60*60))];
+    if (seconds < 2*365*24*60*60)
+        return @"a year ago";
+    return [NSString stringWithFormat:@"%i years ago", (int)floorf(seconds/(365*24*60*60))];
+}
+
 @end
 
 

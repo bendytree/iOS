@@ -23,6 +23,13 @@
     }
 }
 
+- (void) hideShadows
+{
+    for(UIView *wview in [[[self subviews] objectAtIndex:0] subviews]) { 
+        if([wview isKindOfClass:[UIImageView class]]) { wview.hidden = YES; } 
+    } 
+}
+
 @end
 
 #endif

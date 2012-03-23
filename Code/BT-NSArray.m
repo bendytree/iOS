@@ -27,6 +27,16 @@
     return NO;
 }
 
+- (bool) containsIgnoreCase:(NSString*)example
+{
+    for(NSString* el in (NSArray*)self){
+        if([el caseInsensitiveCompare:example] == NSOrderedSame){
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (bool) containsNumber:(NSNumber*)num
 {
     for(NSNumber* el in self)

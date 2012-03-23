@@ -12,6 +12,7 @@
 @interface NSArray (BT)
 
 - (bool) contains:(id)example;
+- (bool) containsIgnoreCase:(NSString*)example;
 - (bool) containsNumber:(NSNumber*)num;
 - (id) firstOrNil;
 - (id) first;
