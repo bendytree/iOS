@@ -10,17 +10,35 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^ModalCompletionHandler)();
+typedef void (^ModalHandler)();
+
+
+enum {
+    ModalAnimationNone,
+    ModalAnimationSlideUp,
+    ModalAnimationSlideDown,
+    ModalAnimationBounce,
+    ModalAnimationFade
+};
+typedef NSInteger ModalAnimation;
+
 
 @interface Modal : NSObject
+@property (retain) UIViewController* controller;
+@property (assign) BOOL framed;
+@property (assign) ModalAnimation pushAnimation;
+@property (assign) ModalAnimation popAnimation;
+@property (copy) ModalHandler willPop;
+@property (copy) ModalHandler didPop;
+@property (copy) ModalHandler didPush;
 
-+ (void) present:(UIViewController*)controller;
-+ (void) present:(UIViewController*)controller framed:(BOOL)framed;
-+ (void) present:(UIViewController*)controller framed:(BOOL)framed completion:(ModalCompletionHandler)completion;
+- (void) pop;
+- (void) push;
++ (void) push:(UIViewController*)controller;
++ (void) push:(UIViewController*)controller framed:(BOOL)framed;
 
-+ (void) pop;
-
-SINGLETON_INTERFACE(Modal)
++ (void) popLatest;
++ (void) popAll;
 
 @end
 

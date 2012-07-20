@@ -16,10 +16,12 @@
 + (NSDate*) parse:(NSString*)str format:(NSString*)format;
 + (NSDate*) parseRailsDate:(NSString *)dateString;
 - (NSString*) toRelativeString;
+- (NSString*) toIso8601;
 @end
 
 
 @interface NSString (BT_NSDate)
+- (NSDate*) iso8601ToDate;
 - (NSDate*) toDate;
 - (NSDate*) toDate:(NSString*)format;
 @end

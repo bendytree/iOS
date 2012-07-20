@@ -14,8 +14,8 @@
 
 + (void) show:(NSString*)message;
 + (void) show:(NSString*)title message:(NSString*)msg;
-+ (void) show:(NSString*)title message:(NSString*)message delegate:(id)del selector:(SEL)sel;
-+ (void) show:(NSString*)title message:(NSString*)message delegate:(id)del selector:(SEL)sel context:(id)con;
++ (void) show:(NSString*)title message:(NSString*)msg then:(void (^)())block;
++ (NSMutableArray*) active;
 
 @end
 

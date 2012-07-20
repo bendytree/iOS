@@ -10,20 +10,49 @@
 
 #import "BT-Timer.h"
 
+
 @interface TimerInfo : NSObject
 @property (assign) id obj;
 @property (retain) NSString* sel;
 @property (retain) NSTimer* timer;
+@property (assign) NSTimeInterval every;
 @end
 
+
 @implementation TimerInfo
-@synthesize obj, sel, timer;
+
+@synthesize obj, sel, every, timer;
+
+- (void) start
+{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:self.every 
+                                                  target:self 
+                                                selector:@selector(tick) 
+                                                userInfo:nil 
+                                                 repeats:NO];
+}
+
+- (void) stop
+{
+    [self.timer invalidate];
+}
+
+- (void) tick
+{
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
+    [self.obj performSelector:NSSelectorFromString(self.sel)];
+    
+    [pool release];
+}
+
 - (void)dealloc {
-    self.obj = nil;
     self.timer = nil;
+    self.obj = nil;
     self.sel = nil;
     [super dealloc];
 }
+
 @end
 
 
@@ -54,7 +83,7 @@
         
         if(target == t.obj && [sel isEqualToString:t.sel])
         {
-            [t.timer invalidate];
+            [t stop];
             [[self current].timers removeObjectAtIndex:i];
             i--;
         }
@@ -66,9 +95,11 @@
     TimerInfo* t = [[[TimerInfo alloc] init] autorelease];
     t.obj = target;
     t.sel = NSStringFromSelector(selector);
-    t.timer = [NSTimer scheduledTimerWithTimeInterval:delay target:target selector:selector userInfo:nil repeats:NO];
+    t.every = delay;
     
     [[self current].timers addObject:t];
+    
+    [t start];
 }
 
 SINGLETON_IMPLEMENTATION(Timer)

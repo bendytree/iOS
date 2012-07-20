@@ -14,6 +14,7 @@
 
 + (void) schedule:(SEL)selector on:(id)target every:(NSTimeInterval)delay;
 + (void) cancel:(SEL)selector on:(id)target;
++ (void) cancelAll:(id)target;
 
 SINGLETON_INTERFACE(Interval)
 

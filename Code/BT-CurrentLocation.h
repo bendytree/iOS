@@ -13,7 +13,8 @@
 
 @interface CurrentLocation : NSObject<CLLocationManagerDelegate>
 
-+ (void) search;
++ (void) start;
++ (void) stop;
 + (CLLocation*) location;
 
 SINGLETON_INTERFACE(CurrentLocation)

@@ -74,7 +74,7 @@
 
 - (IBAction) pressedClose
 {
-    [Modal pop];
+    [Modal popLatest];
 }
 
 @end

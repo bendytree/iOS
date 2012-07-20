@@ -8,14 +8,9 @@
 //
 
 #import "BT-Alert.h"
-
+#import <objc/runtime.h>
 
 @implementation Alert
-
-static UIAlertView* alert = NULL;
-static id delegate = NULL;
-static SEL selector = NULL;
-static id context = NULL;
 
 
 + (void) show:(NSString*)message
@@ -25,32 +20,43 @@ static id context = NULL;
 
 + (void) show:(NSString*)title message:(NSString*)msg
 {
-    [self show:title message:msg delegate:nil selector:nil context:nil];
+    [self show:title message:msg then:^{}];
 }
 
-+ (void) show:(NSString*)title message:(NSString*)message delegate:(id)del selector:(SEL)sel
++ (void) show:(NSString*)title message:(NSString*)msg then:(void (^)())block
 {
-    [self show:title message:message delegate:del selector:sel context:nil];
-}
-
-+ (void) show:(NSString*)title message:(NSString*)message delegate:(id)del selector:(SEL)sel context:(id)con
-{    
-    delegate = del;
-    selector = sel;
-    context = con;
-    
-    alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    alert.delegate = self;
-    [alert show];
+    dispatch_async(dispatch_get_main_queue(), ^{ 
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [[self active] addObject:alert];
+        
+        objc_setAssociatedObject(alert, "blockCallback", Block_copy(block), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        [alert show];
+    });
 }
 
 + (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [alert autorelease];
-    alert = nil;
+    [[self active] removeObject:alertView];
     
-    if(delegate != nil)
-        [delegate performSelector:selector withObject:context];
+    void (^block)() = objc_getAssociatedObject(alertView, "blockCallback");
+    block();
+    Block_release(block);
+    objc_removeAssociatedObjects(alertView);
+    [alertView release];
+}
+
+
+static NSMutableArray* _active = nil;
+
++ (NSMutableArray*) active
+{
+    if(_active == nil)
+    {
+        _active = [[NSMutableArray alloc] init];
+    }
+    return _active;
 }
 
 @end

@@ -14,11 +14,13 @@
     
 }
 
++ (void) boot;
 + (void) save;
 + (id) firstOrNil:(Class)modelClass where:(NSPredicate*)filter;
 + (NSMutableArray*) find:(Class)modelClass;
 + (NSMutableArray*) find:(Class)modelClass where:(NSPredicate*)filter;
 + (NSMutableArray*) find:(Class)modelClass where:(NSPredicate*)filter sort:(NSSortDescriptor*)sort;
++ (NSMutableArray*) find:(Class)modelClass where:(NSPredicate*)filter sorts:(NSArray*)sorts max:(int)max;
 + (NSMutableArray*) find:(Class)modelClass where:(NSPredicate*)filter sort:(NSSortDescriptor*)sort max:(int)max;
 + (int) count:(Class)modelClass;
 + (int) count:(Class)modelClass where:(NSPredicate*)filter;
@@ -27,6 +29,7 @@
 + (void) deleteAll:(Class)modelClass;
 + (void) delete:(NSManagedObject*)obj;
 + (void) delete:(Class)modelClass where:(NSPredicate*)filter;
++ (NSString*) pathToSql;
 
 @end
 

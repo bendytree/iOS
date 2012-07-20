@@ -11,6 +11,7 @@
 
 @interface CD()
 + (CD*) current;
+@property (retain) NSOperationQueue* queue;
 @property (nonatomic, retain) NSManagedObjectContext* context;
 @property (nonatomic, retain) NSManagedObjectModel* model;
 @property (nonatomic, retain) NSPersistentStoreCoordinator* coordinator;
@@ -19,36 +20,60 @@
 
 @implementation CD
 
-@synthesize context, model, coordinator;
+@synthesize queue, context, model, coordinator;
+
++ (NSString*) pathToSql
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *myPathDocs =  [documentsDirectory stringByAppendingPathComponent:@"Model.sqlite"];
+    return myPathDocs;
+}
 
 - (id)init {
     self = [super init];
     if (self) {
         
-        NSURL *modelURL = [NSURL fileURLWithPath: [[NSBundle mainBundle]  pathForResource:@"Model" ofType:@"momd"]];
-        self.model = [[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] autorelease];   
+        self.queue = [NSOperationQueue new];
+        [self.queue setMaxConcurrentOperationCount:1];
+
         
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *myPathDocs =  [documentsDirectory stringByAppendingPathComponent:@"Model.sqlite"];
-        NSURL *storeURL = [NSURL fileURLWithPath:myPathDocs];
-        
-        NSError *error = nil;
-        
-        //Automatic migration
-        NSDictionary* options = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-                                 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
-        
-        self.coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.model] autorelease];
-        if (![self.coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error])
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        
-        self.context = [[[NSManagedObjectContext alloc] init] autorelease];
-        [self.context setPersistentStoreCoordinator:self.coordinator];
+        __block CD* cd = self;
+        NSOperation* op = [NSBlockOperation blockOperationWithBlock:^{
+            cd.model = [NSManagedObjectModel mergedModelFromBundles:nil];
+            
+            NSURL *storeURL = [NSURL fileURLWithPath:[CD pathToSql]];
+            
+            NSError *error = nil;
+            
+            //Automatic migration
+            NSDictionary* options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                                     [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+            
+            cd.coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:cd.model] autorelease];
+            if (![cd.coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error])
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            
+            cd.context = [[[NSManagedObjectContext alloc] init] autorelease];
+            [cd.context setPersistentStoreCoordinator:cd.coordinator];
+        }];
+        [cd.queue addOperation:op];
         
     }
     return self;
+}
+
+
+- (void)dealloc
+{
+    [self.queue cancelAllOperations];
+    self.queue = nil;
+    self.context = nil;
+    self.model = nil;
+    self.coordinator = nil;
+    
+    [super dealloc];
 }
 
 
@@ -56,19 +81,17 @@
 
 + (void) save
 {
-    CD* cd = [CD current];
+    __block CD* cd = [CD current];
     
-    NSError *error = nil;
-    if (cd.context != nil)
-    {
-        [cd.context lock];
+    NSOperation* op = [NSBlockOperation blockOperationWithBlock:^{
+        NSError* error = nil;
         if ([cd.context hasChanges] && ![cd.context save:&error])
         {
             NSLog(@"Unresolved error saving %@, %@", error, [error userInfo]);
             //abort();
-        } 
-        [cd.context unlock];
-    }
+        }
+    }];
+    [cd.queue addOperation:op];
 }
 
 + (NSMutableArray*) find:(Class)modelClass
@@ -88,35 +111,47 @@
 
 + (NSMutableArray*) find:(Class)modelClass where:(NSPredicate*)filter sort:(NSSortDescriptor*)sort max:(int)max
 {
-    CD* cd = [CD current];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    return [self find:modelClass where:filter sorts:(sort == nil ? nil : [NSArray arrayWithObject:sort]) max:max];
+}
+
++ (NSMutableArray*) find:(Class)modelClass where:(NSPredicate*)filter sorts:(NSArray*)sorts max:(int)max
+{
+    __block CD* cd = [CD current];
+    __block NSMutableArray* results = nil;
     
-    //entity description
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:[modelClass description] inManagedObjectContext:cd.context];
-    [request setEntity:entityDesc];
-    
-    //filter
-    if(filter != nil)
-        [request setPredicate:filter];
-    
-    if(sort != nil)
-        [request setSortDescriptors:[NSArray arrayWithObject:sort]];
-    
-    if(max >= 0)
-        [request setFetchLimit:max];
-    
-    NSError *error = nil;
-    //NSLog(@"CD finding on main thread: %@", [NSThread isMainThread] ? @"YES" : @"NO");
-    
-    [cd.context lock];
-    NSMutableArray* results = [NSMutableArray arrayWithArray:[cd.context executeFetchRequest:request error:&error]];
-    [cd.context unlock];
-    [request release];
-    
-    if(error){
-        NSLog(@"Unresolved error finding %@, %@", error, [error userInfo]);
-    }
-    
+    NSOperation* op = [NSBlockOperation blockOperationWithBlock:^{
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        
+        //entity description
+        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:[modelClass description] inManagedObjectContext:cd.context];
+        [request setEntity:entityDesc];
+        
+        //filter
+        if(filter != nil)
+            [request setPredicate:filter];
+        
+        if(sorts != nil)
+            [request setSortDescriptors:sorts];
+        
+        if(max >= 0)
+            [request setFetchLimit:max];
+        
+        NSError *error = nil;
+        //NSLog(@"CD finding on main thread: %@", [NSThread isMainThread] ? @"YES" : @"NO");
+        
+        results = [NSMutableArray arrayWithArray:[cd.context executeFetchRequest:request error:&error]];
+        [results retain];
+        [request release];
+        
+        if(error){
+            NSLog(@"Unresolved error finding %@, %@", error, [error userInfo]);
+        }
+    }];
+    [cd.queue addOperation:op];
+    [op waitUntilFinished];
+
+    [results autorelease];
     return results;
 }
 
@@ -133,26 +168,31 @@
 
 + (int) count:(Class)modelClass where:(NSPredicate*)filter
 {
-    CD* cd = [CD current];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    __block CD* cd = [CD current];
+    __block int count = 0;
     
-    //entity description
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:[modelClass description] inManagedObjectContext:cd.context];
-    [request setEntity:entityDesc];
-    
-    //filter
-    if(filter != nil)
-        [request setPredicate:filter];
-    
-    NSError *error = nil; 
-    [cd.context lock];   
-    int count = [cd.context countForFetchRequest:request error:&error];
-    [cd.context unlock];
-    [request release];
-    
-    if(error){
-        NSLog(@"Unresolved error finding %@, %@", error, [error userInfo]);
-    }
+    NSOperation* op = [NSBlockOperation blockOperationWithBlock:^{
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        
+        //entity description
+        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:[modelClass description] inManagedObjectContext:cd.context];
+        [request setEntity:entityDesc];
+        
+        //filter
+        if(filter != nil)
+            [request setPredicate:filter];
+        
+        NSError *error = nil; 
+        count = [cd.context countForFetchRequest:request error:&error];
+        [request release];
+        
+        if(error){
+            NSLog(@"Unresolved error finding count %@, %@", error, [error userInfo]);
+        }
+    }];
+    [cd.queue addOperation:op];
+    [op waitUntilFinished];
     
     return count;
 }
@@ -164,8 +204,18 @@
 
 + (id) create:(Class)modelClass
 {
-    CD* cd = [CD current];
-    return [NSEntityDescription insertNewObjectForEntityForName:[modelClass description] inManagedObjectContext:cd.context];
+    __block CD* cd = [CD current];
+    __block NSEntityDescription* entity = nil;
+    
+    NSOperation* op = [NSBlockOperation blockOperationWithBlock:^{
+        entity = [NSEntityDescription insertNewObjectForEntityForName:[modelClass description] inManagedObjectContext:cd.context];
+        [entity retain];
+    }];
+    [cd.queue addOperation:op];
+    [op waitUntilFinished];
+    
+    [entity autorelease];
+    return entity;
 }
 
 + (void) deleteAll:(Class)modelClass
@@ -177,7 +227,12 @@
 
 + (void) delete:(NSManagedObject*)obj
 {
-    [[CD current].context deleteObject:obj];
+    __block CD* cd = [CD current];
+    
+    NSOperation* op = [NSBlockOperation blockOperationWithBlock:^{
+        [cd.context deleteObject:obj];
+    }];
+    [cd.queue addOperation:op];
 }
 
 + (void) delete:(Class)modelClass where:(NSPredicate*)filter
@@ -201,13 +256,9 @@ static CD* _current = NULL;
     return _current;
 }
 
-- (void)dealloc
++ (void) boot
 {
-    self.context = nil;
-    self.model = nil;
-    self.coordinator = nil;
-    
-    [super dealloc];
+    [self current];
 }
 
 @end

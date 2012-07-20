@@ -9,6 +9,7 @@
 //
 
 #import "BT-NSDate.h"
+#import "ISO8601DateFormatter.h"
 
 @implementation NSDate (BT_NSDate)
 
@@ -116,10 +117,30 @@ static NSDateFormatter* _formatter = NULL;
     return [NSString stringWithFormat:@"%i years ago", (int)floorf(seconds/(365*24*60*60))];
 }
 
+- (NSString*) toIso8601
+{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    NSString* str = [dateFormatter stringFromDate:self];
+    [dateFormatter release];
+    return str;
+}
+
 @end
 
 
 @implementation NSString (BT_NSDate)
+
+- (NSDate*) iso8601ToDate
+{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    NSDate* str = [dateFormatter dateFromString:self];
+    [dateFormatter release];
+    return str;
+}
 
 - (NSDate*) toDate:(NSString*)format
 {

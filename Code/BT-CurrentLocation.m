@@ -13,39 +13,53 @@
 
 @interface CurrentLocation()
 @property (retain) CLLocationManager* manager;
+@property (assign) BOOL isMonitoring;
 @end
 
 
 @implementation CurrentLocation
 
-@synthesize manager;
+@synthesize manager, isMonitoring;
 
 - (id)init {
     self = [super init];
     if (self) {
+        
         self.manager = [[CLLocationManager new] autorelease];
-        [self.manager setDesiredAccuracy:kCLLocationAccuracyKilometer];
-        [self.manager setDelegate:self];
+        [self.manager setPurpose:@"Segments such as weather are based on your location."];
+        self.isMonitoring = NO;
+        
     }
     return self;
 }
 
-+ (void) search
++ (void) start
 {
-    CurrentLocation* loc = [self current];
-    [loc.manager startUpdatingLocation];
+    CurrentLocation* cur = [self current];
+    if(cur.isMonitoring) return;
+    
+    
+    [cur.manager startMonitoringSignificantLocationChanges];
+    cur.isMonitoring = YES;
+    LOG_TO(@"location", @"start monitoring");
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-	didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
++ (void) stop
 {
-
+    CurrentLocation* cur = [self current];
+    if(cur.isMonitoring == NO) return;
+    
+    [cur.manager stopMonitoringSignificantLocationChanges];
+    cur.isMonitoring = NO;
+    LOG_TO(@"location", @"stop monitoring");
 }
 
 + (CLLocation*) location
 {
-    return [self current].manager.location;
+    CLLocation* loc = [self current].manager.location;
+    if(CLLocationCoordinate2DIsValid(loc.coordinate) == NO)
+        return nil;
+    return loc;
 }
 
 SINGLETON_IMPLEMENTATION(CurrentLocation)

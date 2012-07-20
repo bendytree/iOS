@@ -33,6 +33,7 @@
 - (void) setSameSizeAsParent;
 - (void) setSize:(CGSize)size;
 - (void) setOriginPoint:(CGPoint)size;
+- (void) coverSuperview;
 
 @end
 

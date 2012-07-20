@@ -118,6 +118,11 @@
 
 - (void) setSameSizeAsParent
 {
+    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.superview.frame.size.width, self.superview.frame.size.height)];
+}
+
+- (void) coverSuperview
+{
     [self setFrame:CGRectMake(0, 0, self.superview.frame.size.width, self.superview.frame.size.height)];
 }
 

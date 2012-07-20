@@ -14,16 +14,45 @@
 @property (assign) id obj;
 @property (retain) NSString* sel;
 @property (retain) NSTimer* timer;
+@property (assign) NSTimeInterval every;
 @end
 
+
 @implementation IntervalInfo
-@synthesize obj, sel, timer;
+
+@synthesize obj, sel, every, timer;
+
+- (void) start
+{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:self.every 
+                                                  target:self 
+                                                selector:@selector(tick) 
+                                                userInfo:nil 
+                                                 repeats:YES];
+}
+
+- (void) stop
+{
+    [self.timer invalidate];
+}
+
+- (void) tick
+{
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
+    [self.obj performSelector:NSSelectorFromString(self.sel)];
+    
+    [pool release];
+}
+
 - (void)dealloc {
-    self.obj = nil;
+    [self.timer invalidate];
     self.timer = nil;
+    self.obj = nil;
     self.sel = nil;
     [super dealloc];
 }
+
 @end
 
 
@@ -54,7 +83,22 @@
         
         if(target == t.obj && [sel isEqualToString:t.sel])
         {
-            [t.timer invalidate];
+            [t stop];
+            [[self current].intervals removeObjectAtIndex:i];
+            i--;
+        }
+    }
+}
+
++ (void) cancelAll:(id)target
+{
+    for(int i=0; i < [[self current].intervals count]; i++)
+    {
+        IntervalInfo* t = [[self current].intervals objectAtIndex:i];
+        
+        if(target == t.obj)
+        {
+            [t stop];
             [[self current].intervals removeObjectAtIndex:i];
             i--;
         }
@@ -66,9 +110,11 @@
     IntervalInfo* t = [[[IntervalInfo alloc] init] autorelease];
     t.obj = target;
     t.sel = NSStringFromSelector(selector);
-    t.timer = [NSTimer scheduledTimerWithTimeInterval:delay target:target selector:selector userInfo:nil repeats:YES];
+    t.every = delay;
     
     [[self current].intervals addObject:t];
+    
+    [t start];
 }
 
 SINGLETON_IMPLEMENTATION(Interval)

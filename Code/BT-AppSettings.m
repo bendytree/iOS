@@ -44,11 +44,13 @@
 
 + (void) setString:(NSString*)val forKey:(NSString*)key
 {
-    if(val == nil){
+    if(val == nil)
+    {
         [self clearKey:key];
-    }else{
-        [self.dic setObject:val forKey:key];
+        return;
     }
+    
+    [self.dic setObject:val forKey:key];
     [self save];
 }
 
@@ -95,6 +97,12 @@
 
 + (void) setArray:(NSArray*)array forKey:(NSString*)key
 {
+    if(array == nil)
+    {
+        [self clearKey:key];
+        return;
+    }
+    
     [self.dic setObject:array forKey:key];
     [self save];
 }
@@ -109,6 +117,12 @@
 
 + (void) setData:(NSData*)data forKey:(NSString*)key
 {
+    if(data == nil)
+    {
+        [self clearKey:key];
+        return;
+    }
+    
     [self.dic setObject:data forKey:key];
     [self save];
 }

@@ -10,8 +10,8 @@
 #import <Foundation/Foundation.h>
 
 @interface Confirm : NSObject
-+ (void) show:(NSString*)title delegate:(id)del selector:(SEL)sel;
-+ (void) show:(NSString*)title delegate:(id)del selector:(SEL)sel context:(id)con;
++ (void) show:(NSString*)title okTitle:(NSString*)okTitle ok:(void (^)())ok cancelTitle:(NSString*)cancelTitle cancel:(void (^)())cancel;
++ (void) show:(NSString*)title ok:(void (^)())ok cancel:(void (^)())cancel;
 @end
 
 #endif

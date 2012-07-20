@@ -79,8 +79,10 @@ static NSString* statementResult = nil;
     return [self runStatement:script];
 }
 
-+ (void) initialize
++ (void) boot
 {
+    TRACK();
+    
     [self current];
 }
 
